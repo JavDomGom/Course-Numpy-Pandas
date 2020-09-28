@@ -256,3 +256,47 @@ df_covid19_ccaas['num_casos'].plot()
 
 <p align="center"><img src="img/matplot_11.png"></p>
 <br>
+
+## Ejemplo esperanza de vida frente a renta per capita por países
+
+En este ejemplo vamos a utilizar el caso de uso que vimos anteriormente en el que teníamos la esperanza de vida frente a la renta per capita por países. Vamos a ver si existe una correlación entre estas dos variables.
+
+```python
+df = pd.read_csv(
+    r'../datasets/Info_pais.csv',
+    encoding='ISO-8859-1',
+    delimiter=';'
+)
+```
+
+Ahora pondremos los datos en orden ascendente según los valores de la columna `Esperanza de vida` de la siguiente manera:
+
+```python
+df_order = df.sort_values(
+    'Esperanza de vida',
+    ascending=True
+)
+
+df_order.head()
+```
+
+<p align="center"><img src="img/pandas_02.png"></p>
+<br>
+
+Es el momento de crear el gráfico mediante el método `scatter()`. Representaremos en el eje `x` los datos de la columna `Renta per capita` y en el eje `y` los datos de la columna `Esperanza de vida`.
+
+```python
+plt.scatter(df_order['Renta per capita'], df_order['Esperanza de vida'])
+```
+
+<p align="center"><img src="img/matplot_12.png"></p>
+<br>
+
+De momento se aprecia un gráfico que nos da una idea aproximada de cómo se ven los datos. Podemos añadir un título y etiquetas a los ejes `x` e `y` del gráfico de la siguiente manera:
+
+```python
+plt.scatter(df_order['Renta per capita'], df_order['Esperanza de vida'])
+plt.title('Renta per capita vs Esperanza de vida')
+plt.xlabel('Renta per capita')
+plt.ylabel('Esperanza de vida')
+```
