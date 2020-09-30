@@ -300,3 +300,25 @@ plt.title('Renta per capita vs Esperanza de vida')
 plt.xlabel('Renta per capita')
 plt.ylabel('Esperanza de vida')
 ```
+
+En el gráfico que acabamos de generar los puntos  aparecen uniformes. Vamos a configurar el gráfico para que sean proporcionales tanto en tamaño como en color para cada país. Para ello debemos crear una nueva columna llamda por ejemplo `df_order['Poblacion_normalizada']` que normalice frente al máximo de población, por lo que le asignaremos como valores el valor de la columna `Población` dividido entre el valor máximo de esta columna `Población`, de este modo lo estaríamos escalando o normalizando.
+
+```python
+df_order['Poblacion_normalizada'] = df_order['Poblacion']/max(df_order['Poblacion'])
+```
+
+De este modo, el país que tenga la población más alta quedaría escalado a `1` y el resto de países quedarían normalizado en base a este valor máximo.
+
+Existen grandes diferencias en número de habitantes entre unos países y otros, por ejemplo China con 1200 millones y otros que podrían tener 50000. Para evitar que un país con esta gran cantidad de habitantes inunde el gráfico es recomendable que en vez de dividir la población de cada país entre el máximo de población, hacer la división del máximo entre `10000`, para no tener un factor tan elevado.
+
+```python
+df_order['Poblacion_normalizada'] = df_order['Poblacion']/(max(df_order['Poblacion'])/10000)
+
+df_order.head()
+```
+
+<p align="center"><img src="img/matplot_13.png"></p>
+<br>
+
+
+Ahora podremos usar esta nueva columna con los datos escalados para crear una visualización de los datos mucho más potente.
