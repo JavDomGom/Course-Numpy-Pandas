@@ -322,3 +322,34 @@ df_order.head()
 
 
 Ahora podremos usar esta nueva columna con los datos escalados para crear una visualización de los datos mucho más potente.
+
+Es el momento de generar un nueva visualización utilizando la nueva columna de datos normalizados que hemos generado, por ejemplo con el siguiente código:
+
+```python
+plt.scatter(df_order['Renta per capita'], df_order['Esperanza de vida'], s=df_order['Poblacion_normalizada'])
+plt.title('Renta per capita vs Esperanza de vida')
+plt.xlabel('Renta per capita')
+plt.ylabel('Esperanza de vida')
+```
+
+Para modificar el tamaño hemos utilizado el parámetro `s` y como valor usamos la columna `Poblacion_normalizada`.
+
+<p align="center"><img src="img/matplot_14.png"></p>
+<br>
+
+El problema que vemos es que la visualización es muy pequeña, pero podemos mejorar esto añadiendo a nuestro código lo siguiente para aumentar las pulgadas de nuestro gráfico:
+
+```python
+plt.scatter(df_order['Renta per capita'], df_order['Esperanza de vida'], s=df_order['Poblacion_normalizada'])
+plt.title('Renta per capita vs Esperanza de vida')
+plt.xlabel('Renta per capita')
+plt.ylabel('Esperanza de vida')
+
+fig = plt.gcf()
+fig.set_size_inches(14.5, 10)
+```
+
+<p align="center"><img src="img/matplot_15.png"></p>
+<br>
+
+De este modo se ve mucho más grande.
