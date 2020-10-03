@@ -295,7 +295,10 @@ plt.scatter(df_order['Renta per capita'], df_order['Esperanza de vida'])
 De momento se aprecia un gráfico que nos da una idea aproximada de cómo se ven los datos. Podemos añadir un título y etiquetas a los ejes `x` e `y` del gráfico de la siguiente manera:
 
 ```python
-plt.scatter(df_order['Renta per capita'], df_order['Esperanza de vida'])
+plt.scatter(
+    df_order['Renta per capita'],
+    df_order['Esperanza de vida']
+)
 plt.title('Renta per capita vs Esperanza de vida')
 plt.xlabel('Renta per capita')
 plt.ylabel('Esperanza de vida')
@@ -326,13 +329,17 @@ Ahora podremos usar esta nueva columna con los datos escalados para crear una vi
 Es el momento de generar un nueva visualización utilizando la nueva columna de datos normalizados que hemos generado, por ejemplo con el siguiente código:
 
 ```python
-plt.scatter(df_order['Renta per capita'], df_order['Esperanza de vida'], s=df_order['Poblacion_normalizada'])
+plt.scatter(
+    df_order['Renta per capita'],
+    df_order['Esperanza de vida'],
+    s=df_order['Poblacion_normalizada']
+)
 plt.title('Renta per capita vs Esperanza de vida')
 plt.xlabel('Renta per capita')
 plt.ylabel('Esperanza de vida')
 ```
 
-Para modificar el tamaño hemos utilizado el parámetro `s` y como valor usamos la columna `Poblacion_normalizada`.
+Para modificar el tamaño hemos utilizado el parámetro `s` (size) y como valor usamos la columna `Poblacion_normalizada`.
 
 <p align="center"><img src="img/matplot_14.png"></p>
 <br>
@@ -340,7 +347,11 @@ Para modificar el tamaño hemos utilizado el parámetro `s` y como valor usamos 
 El problema que vemos es que la visualización es muy pequeña, pero podemos mejorar esto añadiendo a nuestro código lo siguiente para aumentar las pulgadas de nuestro gráfico:
 
 ```python
-plt.scatter(df_order['Renta per capita'], df_order['Esperanza de vida'], s=df_order['Poblacion_normalizada'])
+plt.scatter(
+    df_order['Renta per capita'],
+    df_order['Esperanza de vida'],
+    s=df_order['Poblacion_normalizada']
+)
 plt.title('Renta per capita vs Esperanza de vida')
 plt.xlabel('Renta per capita')
 plt.ylabel('Esperanza de vida')
@@ -352,4 +363,108 @@ fig.set_size_inches(14.5, 10)
 <p align="center"><img src="img/matplot_15.png"></p>
 <br>
 
-De este modo se ve mucho más grande.
+De este modo se ve mucho más grande. Si fuera necesario se pueden cambiar los valores de la función `set_size_inches()` por otros más adecuados para ajustar el tamaño.
+
+Si nos fijamos bien, ahora se representa cada burbuja de cada país de un tamaño diferente, dependiendo del valor que tenga en la nueva columna que hemos generado con los datos normalizados.
+
+Ahora vamos a modificar el color. Para ello debemos añadir el atributo `c` (color), a conutnuación del atributo `s` (size), y como valor vamos a usar de nuevo la columna `Poblacion_normalizada`. Quedaría del siguiente modo:
+
+```python
+plt.scatter(
+    df_order['Renta per capita'],
+    df_order['Esperanza de vida'],
+    s=df_order['Poblacion_normalizada'],
+    c=df_order['Poblacion_normalizada']
+)
+plt.title('Renta per capita vs Esperanza de vida')
+plt.xlabel('Renta per capita')
+plt.ylabel('Esperanza de vida')
+
+fig = plt.gcf()
+fig.set_size_inches(14.5, 10)
+```
+
+<p align="center"><img src="img/matplot_16.png"></p>
+<br>
+
+En esta nueva visualización vemos que ya no solo se representa cada país en un tamaño diferente, sino que también en un color en función de la población.
+
+También podremos añadir la etiqueta del nombre del país dentro de cada burbuja utilizando el método `annotate()`, por ejemplo añadiéndoselo solo a los `10` primeros países con el siguiente código:
+
+```python
+plt.scatter(
+    df_order['Renta per capita'],
+    df_order['Esperanza de vida'],
+    s=df_order['Poblacion_normalizada'],
+    c=df_order['Poblacion_normalizada']
+)
+plt.title('Renta per capita vs Esperanza de vida')
+plt.xlabel('Renta per capita')
+plt.ylabel('Esperanza de vida')
+
+fig = plt.gcf()
+fig.set_size_inches(14.5, 10)
+
+for i in range(1, 10):
+    plt.annotate(
+        df_order['País'][i],
+        (
+            df_order['Renta per capita'][i],
+            df_order['Esperanza de vida'][i]
+        )
+    )
+```
+
+<p align="center"><img src="img/matplot_17.png"></p>
+<br>
+
+Otro especto que podríamos mejorar es la representación de los datos del eje `y`, son los datos de `120` países y actualmente se ven muy juntos, se ve mal. esto se soluciona fácilmente con la fución `yticks()` a la que le pasaremos tres argumentos, que son un `1` representando el primer dato, `120` representamdo el último dato, y `10` para indicar que los queremos mostrar de diez en diez.
+
+```python
+plt.scatter(
+    df_order['Renta per capita'],
+    df_order['Esperanza de vida'],
+    s=df_order['Poblacion_normalizada'],
+    c=df_order['Poblacion_normalizada']
+)
+plt.title('Renta per capita vs Esperanza de vida')
+plt.xlabel('Renta per capita')
+plt.ylabel('Esperanza de vida')
+
+fig = plt.gcf()
+fig.set_size_inches(14.5, 10)
+
+for i in range(1, 10):
+    plt.annotate(
+        df_order['País'][i],
+        (
+            df_order['Renta per capita'][i],
+            df_order['Esperanza de vida'][i]
+        )
+    )
+
+
+plt.yticks(ticks=range(1, 120, 10))
+```
+
+<p align="center"><img src="img/matplot_18.png"></p>
+<br>
+
+De este modo hemos creado una visualizción de los datos muy potente y de una manera muy sencilla. La conclusión que podemos sacar de este gráfico es que efectivamente existe una correlación entre la renta per capita y la esperanza de vida según el país. Podemos ver que conforme la renta per capita aumenta la esperanza de vida también aumenta. También podemos deducir que el número de población no afecta a la esperanza de vida, ya que en la visualización que hemos creado se pueden ver países con una gran cantidas de población que no están entre los valores más bajos en cuanto a esperanza de vida se refiere.
+
+# Conceptos básicos
+
+## Variables discretas y continuas
+
+Se dice que una variable es *discreta* cuando no puede tomar ningún valor entre dos consecutivos, y que es *continua* cuando puede tomar cualquier valor dentro de un intervalo. Por ejemplo:
+
+* Variable discreta:
+```python
+numero_alumnos_por_clase = [28, 31, 30, 27, 25, 36]
+```
+* Variable continua:
+```python
+temperatura_madrid = [28.3, 29.0, 22.47, 30.02, 17.6]
+```
+
+##
