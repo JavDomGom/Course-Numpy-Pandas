@@ -452,7 +452,7 @@ plt.yticks(ticks=range(1, 120, 10))
 
 De este modo hemos creado una visualizción de los datos muy potente y de una manera muy sencilla. La conclusión que podemos sacar de este gráfico es que efectivamente existe una correlación entre la renta per capita y la esperanza de vida según el país. Podemos ver que conforme la renta per capita aumenta la esperanza de vida también aumenta. También podemos deducir que el número de población no afecta a la esperanza de vida, ya que en la visualización que hemos creado se pueden ver países con una gran cantidas de población que no están entre los valores más bajos en cuanto a esperanza de vida se refiere.
 
-# Conceptos básicos
+# Conceptos estadísticos básicos
 
 ## Variables discretas y continuas
 
@@ -467,4 +467,107 @@ numero_alumnos_por_clase = [28, 31, 30, 27, 25, 36]
 temperatura_madrid = [28.3, 29.0, 22.47, 30.02, 17.6]
 ```
 
-##
+## Cálculo de la media y de la mediana
+
+La *media* y la *mediana* son dos conceptos estadísticos básicos que debemos conocer. La media se calcula sumando todos los valores de un conjunto y dividiéndo el resultado entre el número total de valores.
+
+<p align="center"><img src="img/latex_media.png" width="175"></p>
+<br>
+
+Veamos un ejemplo, supongamos que tenemos la variable `v1` con la siguiente lista de valores:
+
+```python
+v1 = [4, 6, 3, 5, 8, 9, 2, 12, 16, 4, 7, 42, 13, 6, 7]
+```
+
+Para calcular la media primero debemos sumar todos los valores de la variable `v1` y dividirlo entre la cantidad de valores:
+
+```python
+sum(v1)/len(v1)
+9.6
+```
+
+En este caso la media de los valores de la variable `v1` es `9.6`.
+
+La mediana es el valor central de los valores de una variable, una vez estos están ordenados de manera ascendente. Veamos un ejemplo, utilizando los valores de la variable `v1` de antes, solo que con los elementos de la lista ordenados de forma ascendente y alamcenados en una nueva variable llamada `v2`:
+
+```python
+v2 = [2, 3, 4, 4, 5, 6, 6, 7, 7, 8, 9, 12, 13, 16, 42]
+```
+
+Para calcular la mediana podríamos hacer una función llamada `mediana` que reciba como argumento una lista de números, en nuestro caso le pasaremos la variable `v2`, por ejemplo:
+
+```python
+def mediana(lista):
+    lst_sorted = sorted(lista)
+    lst_len = len(lista)
+    index = (lst_len - 1) // 2 # Floor division.
+
+    if (lst_len % 2):
+        return lst_sorted[index]
+    else:
+        return (lst_sorted[index] + lst_sorted[index + 1])/2.0
+
+mediana(v2)
+7.0
+```
+
+Como resultado obtenemos que la mediana de estos valores es `7`, que coincide con la posición central de los elementos de la variable `v2`. Si la variable tuviese un número par de elementos, la mediana sería la suma de los dos elementos centrales dividido entre dos.
+
+En la siguiente representacin gráfica podemos ver la distribución de los valores del ejemplo anterior en los que la media (`9.6`) se representa como una línea azúl y la mediana (`7.0`) como línea verde.
+
+<p align="center"><img src="img/matplot_19.png"></p>
+<br>
+
+Existe una diferencia entre la media y la media porque hay un valor que dista mucho del resto de valores de la secuencia, en nuestro caso es el `45`. A este tipo de datos se los denomina **outliers**. Si por el contrario todos los valores de la secuencia tuvieran un valor más o menos parecido podríamos ver que la media y la media tendrían también un valor similar.
+
+Otro ejemplo con valores en los que encontramos un outlaier aún más elevado:
+
+```python
+v1 = [4, 6, 3, 5, 8, 9, 2, 12, 16, 4, 7, 282, 13, 6, 7]
+v2 = [31, 23, 25, 20, 21, 29, 24, 26, 30, 27, 25, 24, 23, 32, 24]
+
+def mediana(lista):
+    lst_sorted = sorted(lista)
+    lst_len = len(lista)
+    index = (lst_len - 1) // 2 # Floor division.
+
+    if (lst_len % 2):
+        return lst_sorted[index]
+    else:
+        return (lst_sorted[index] + lst_sorted[index + 1])/2.0
+
+mediana(v2)
+
+print(f'La media de v1 es: {sum(v1)/len(v1)}')
+print(f'La media de v2 es: {sum(v2)/len(v2)}')
+print(f'La mediana de v1 es: {mediana(v1)}')
+print(f'La mediana de v2 es: {mediana(v2)}')
+```
+
+Obtenemos el siguiente resultado:
+
+```
+La media de v1 es: 25.6
+La media de v2 es: 25.6
+La mediana de v1 es: 7
+La mediana de v2 es: 25
+```
+
+Aquí vemos que la media en ambas variables `v1` y `v2` es `25.6`, sin embargo en las medianas existe una enorme diferencia, debido a que el resultado se ve más impactado por estos **outliers**, en este caso `282`, que dista mucho del resto de valores de la secuencia.
+
+La media es un valor estadístico muy importante, pero habitualmente se utiliza la mediana ya que acaba siendo más representativo sobre la distrubición de nuestros datos, y evita todos estos posibles **outliers**.
+
+## Varianza y desviación de una variable
+
+La varianza de una variable nos indica la dispersión de un conjunto de datos respecto a su valor medio. Esto significa que si tenemos una varianza alta en nuestra variable, los valores de la variable van a estar más alejados del valor medio.
+
+Matemáticamente la varianza de una variable se calcula de la siguiente manera:
+
+1. A cada valor de la variable hay que restarle el promedio de la variable.
+2. El resultado anterior se eleva al cuadrado.
+3. Hay que hacer un sumatorio con el resultado de las operaciones anteriores para cada valor de la variable.
+4. Se divide entre el número de valores de la variable.
+
+<p align="center"><img src="img/latex_varianza.png" width="175"></p>
+<br>
