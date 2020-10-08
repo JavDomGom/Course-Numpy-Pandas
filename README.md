@@ -571,3 +571,11 @@ Matemáticamente la varianza de una variable se calcula de la siguiente manera:
 
 <p align="center"><img src="img/latex_varianza.png" width="175"></p>
 <br>
+
+
+La deviación estándar se puede calcular con la raíz cuadrada de la varianza:
+
+<p align="center"><img src="img/latex_desviacion_estandar.png" width="175"></p>
+<br>
+
+Se suele utilizar más la varianza puesto que está menos influenciada por los valores positivos o negativos que pudiera haber en la diferencia entre el valor y el promedio, por lo tanto la varianza es más representativa a la hora de calcular la disperción de los datos de nuestro conjunto de datos.
