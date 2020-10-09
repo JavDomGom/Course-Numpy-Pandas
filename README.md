@@ -578,4 +578,19 @@ La deviación estándar se puede calcular con la raíz cuadrada de la varianza:
 <p align="center"><img src="img/latex_desviacion_estandar.png" width="175"></p>
 <br>
 
+Veamos un caso de uso. Tenemos un avariable `x` que tiene como valor el peso de los tomates que hemos recolectado durantre un periodo de 8 días.
+
+* Tomate 1 = 60gr
+* Tomate 2 = 56gr
+* Tomate 3 = 61gr
+* Tomate 4 = 68gr
+* Tomate 5 = 51gr
+* Tomate 6 = 53gr
+* Tomate 7 = 69gr
+* Tomate 8 = 54gr
+
+```python
+x = [60, 56, 61, 68, 51, 53, 69, 54]
+```
+
 Se suele utilizar más la varianza puesto que está menos influenciada por los valores positivos o negativos que pudiera haber en la diferencia entre el valor y el promedio, por lo tanto la varianza es más representativa a la hora de calcular la disperción de los datos de nuestro conjunto de datos.
