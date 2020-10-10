@@ -569,28 +569,154 @@ Matemáticamente la varianza de una variable se calcula de la siguiente manera:
 3. Hay que hacer un sumatorio con el resultado de las operaciones anteriores para cada valor de la variable.
 4. Se divide entre el número de valores de la variable.
 
-<p align="center"><img src="img/latex_varianza.png" width="175"></p>
+<p align="center"><img src="img/latex_varianza.png" width="125"></p>
 <br>
 
 
 La deviación estándar se puede calcular con la raíz cuadrada de la varianza:
 
-<p align="center"><img src="img/latex_desviacion_estandar.png" width="175"></p>
+<p align="center"><img src="img/latex_desviacion_estandar.png" width="90"></p>
 <br>
 
 Veamos un caso de uso. Tenemos un avariable `x` que tiene como valor el peso de los tomates que hemos recolectado durantre un periodo de 8 días.
 
-* Tomate 1 = 60gr
-* Tomate 2 = 56gr
-* Tomate 3 = 61gr
-* Tomate 4 = 68gr
-* Tomate 5 = 51gr
-* Tomate 6 = 53gr
-* Tomate 7 = 69gr
-* Tomate 8 = 54gr
+* Tomate x_1 = 60gr
+* Tomate x_2 = 56gr
+* Tomate x_3 = 61gr
+* Tomate x_4 = 68gr
+* Tomate x_5 = 51gr
+* Tomate x_6 = 53gr
+* Tomate x_7 = 69gr
+* Tomate x_8 = 54gr
 
 ```python
 x = [60, 56, 61, 68, 51, 53, 69, 54]
 ```
 
-Se suele utilizar más la varianza puesto que está menos influenciada por los valores positivos o negativos que pudiera haber en la diferencia entre el valor y el promedio, por lo tanto la varianza es más representativa a la hora de calcular la disperción de los datos de nuestro conjunto de datos.
+El primer paso que hay que dar es calcular la media de la variable `x`, tal y como hemos visto anteriormente:
+
+<p align="center"><img src="img/latex_media_caso_de_uso_00.png" width="175"></p>
+<br>
+
+```python
+sum(x)/len(x)
+59.0
+```
+
+En el numerador tenemos la suma de todos los valores de la variable `x`, que en este caso de uso es `472`, en el denominador tenemos el número de elementos o datos que tiene la variable `x`, en este caso `8`. Como resultado la media es `59` gramos.
+
+En el segundo paso tendremos restar a cada valor de la variable `x` la media y luego elevar el resultado al cuadrado. Al final hay que sumar todos los valores obtenidos en esta última operación, tal y como se muestra en la siguiente tabla:
+
+<p align="center"><img src="img/latex_media_caso_de_uso_01.png" width="260"></p>
+<br>
+
+```python
+for n in map(lambda i : pow(i-59, 2), x):
+    print(n)
+1
+9
+4
+81
+64
+36
+100
+25
+```
+
+```python
+sum(map(lambda i : pow(i-59, 2), x))
+320
+```
+
+El último paso para calcular la varianza de `x` es dividir `320` entre el número de elementos de la variable `x`, que en este caso es `8`. Como resultado tenemos que la varianza de `x` es `40`.
+
+<p align="center"><img src="img/latex_media_caso_de_uso_02.png" width="220"></p>
+<br>
+
+```python
+320/8
+40.0
+```
+
+Mas allá de la varianza podemos calcular también la desviación estándar de la variable `x`, basta con calcular la raíz cuadrada de la varianza.
+
+<p align="center"><img src="img/latex_media_caso_de_uso_03.png" width="210"></p>
+<br>
+
+```python
+import math
+math.sqrt(40)
+6.324555320336759
+```
+
+Obtenemos como resultado `6.32`. Esto nos permite tener un valor que se encuentra dentro del orden de magnitud de nuestra variable `x`, es decir, entre todos nuestros tomates existe una desviación estándar de `6.32` gramos.
+
+Veamos qué pasaría si tuviéramos otro caso en el que recogiéramos otros 8 tomates y almacenáramos el peso de cada uno de estos tomates en esta nueva variable `y`:
+
+* Tomate y_1 = 50gr
+* Tomate y_2 = 66gr
+* Tomate y_3 = 51gr
+* Tomate y_4 = 78gr
+* Tomate y_5 = 41gr
+* Tomate y_6 = 63gr
+* Tomate y_7 = 59gr
+* Tomate y_8 = 64gr
+
+```python
+y = [50, 66, 51, 78, 41, 63, 59, 64]
+```
+Vemos que hay una mayor dispersión en los datos de partida, sin embargo la media es `59`, la misma que en el caso de la variable `x`.
+
+```python
+sum(y)/len(y)
+59.0
+```
+
+Si ahora calculamos del mismo modo que antes el numerador del término de la varianza podremos ver que en la tabla hay valores mucho más elevandos que lo que teníamos previamente:
+
+<p align="center"><img src="img/latex_media_caso_de_uso_04.png" width="260"></p>
+<br>
+
+```python
+for n in map(lambda i : pow(i-59, 2), y):
+    print(n)
+81
+49
+64
+361
+324
+16
+0
+25
+```
+
+```python
+sum(map(lambda i : pow(i-59, 2), y))
+920
+```
+
+Esto se debe a que la secuencia original de datos dista mucho más del valor promedio de `59` gramos. Con estos nuevos datos, si calculamos la varianza en este caso obtendremos un valor de `115`.
+
+<p align="center"><img src="img/latex_media_caso_de_uso_05.png" width="225"></p>
+<br>
+
+```python
+920/8
+115.0
+```
+
+Y la desviación estándar serían `10.72` gramos
+
+<p align="center"><img src="img/latex_media_caso_de_uso_06.png" width="225"></p>
+<br>
+
+```python
+import math
+
+math.sqrt(115)
+10.723805294763608
+```
+
+Lo que hemos aprendido con estos dos ejemplos es que conforme el conjunto de valores tiene una mayor dispersión respecto al valor promedio, al final tendrá un valor de varianza superior. Por lo tanto la varianza nos proporciona una medida de la volatilidad o incertidumbre de una determinada variable o conjunto de datos. De hecho, si todos los valores de la variable fueran iguales el valor de la varianza sería `0`, es decir, no habría ningún tipo de incertidumbre.
+
+Se suele utilizar más la varianza puesto que está menos influenciada por los valores positivos o negativos que pudiera haber en la diferencia entre el valor y el promedio, por lo tanto la varianza es más representativa a la hora de calcular la dispersión de los datos de nuestro conjunto de datos.
