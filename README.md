@@ -519,7 +519,7 @@ En la siguiente representacin gráfica podemos ver la distribución de los valor
 <p align="center"><img src="img/matplot_19.png"></p>
 <br>
 
-Existe una diferencia entre la media y la media porque hay un valor que dista mucho del resto de valores de la secuencia, en nuestro caso es el `45`. A este tipo de datos se los denomina **outliers**. Si por el contrario todos los valores de la secuencia tuvieran un valor más o menos parecido podríamos ver que la media y la media tendrían también un valor similar.
+Existe una diferencia entre la media y la mediana porque hay un valor que dista mucho del resto de valores de la secuencia, en nuestro caso es el `45`. A este tipo de datos se los denomina **outliers**. Si por el contrario todos los valores de la secuencia tuvieran un valor más o menos parecido podríamos ver que la media y la media tendrían también un valor similar.
 
 Otro ejemplo con valores en los que encontramos un outlaier aún más elevado:
 
