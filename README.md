@@ -720,3 +720,7 @@ math.sqrt(115)
 Lo que hemos aprendido con estos dos ejemplos es que conforme el conjunto de valores tiene una mayor dispersión respecto al valor promedio, al final tendrá un valor de varianza superior. Por lo tanto la varianza nos proporciona una medida de la volatilidad o incertidumbre de una determinada variable o conjunto de datos. De hecho, si todos los valores de la variable fueran iguales el valor de la varianza sería `0`, es decir, no habría ningún tipo de incertidumbre.
 
 Se suele utilizar más la varianza puesto que está menos influenciada por los valores positivos o negativos que pudiera haber en la diferencia entre el valor y el promedio, por lo tanto la varianza es más representativa a la hora de calcular la dispersión de los datos de nuestro conjunto de datos.
+
+## Correlación de variables
+
+La correlación de variables es un término muy utilizado en anlálisis de datos. Indica si existe una relación entre dos variables y la dirección de esta relación.
