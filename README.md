@@ -721,6 +721,58 @@ Lo que hemos aprendido con estos dos ejemplos es que conforme el conjunto de val
 
 Se suele utilizar más la varianza puesto que está menos influenciada por los valores positivos o negativos que pudiera haber en la diferencia entre el valor y el promedio, por lo tanto la varianza es más representativa a la hora de calcular la dispersión de los datos de nuestro conjunto de datos.
 
-## Correlación de variables
+# NumPy
 
-La correlación de variables es un término muy utilizado en anlálisis de datos. Indica si existe una relación entre dos variables y la dirección de esta relación.
+NumPy es una librería de Python enfocada en el cálculo numérico que nos permite realizar operaciones de una manera sencilla y rápida. Su objeto base es un vector de números denominado Array. Es una alternativa a las listas que hemos visto hasta ahora y nos va a permitir realizar una serie de funciones muy potentes. A diferencia de las listas, donde se opera de forma independiente en cada uno de los elementos, en los Arrays las operaciones se van a realizar sobre todo el Array simultáneamente. Otra gran diferencia respecto a las listas tradicionales es que en un Array solo se admite un tipo de dato, normalmente numérico. Además NumPy nos va a servir como base de cálculo para otras librerías como Pandas o SciKit Learn.
+
+## Importación de NumPy
+
+Por convención la imporatción de la librería NumPy en nuestro código se realiza de la siguiente manera:
+
+```python
+import numpy as np
+```
+
+## Ejemplo Índice de Masa Corporal (IMC)
+
+En este ejemplo vamos a calcular el índice de masa corporal sobre los valores `peso` y `altura` de tres personas.
+
+```python
+altura = [1.7, 1.65, 1.82]
+peso = [67, 55, 72]
+```
+
+El cálculo que hay que hacer para obtener el IMC es dividir el peso entre el cuadrado de la altura:
+
+```python
+peso / altura**2
+```
+
+Si quisiéramos calcular el IMC mediante listas tradicionales podríamos hacerlo fácilmente usando la función `zip()`, iterar a través de un bucle `for` e ir añadiéndo los resultados mediante compresión de listas del siguiente modo:
+
+```python
+[p / a**2 for p, a in zip(peso, altura)]
+[23.18339100346021, 20.202020202020204, 21.736505252988767]
+```
+
+El cálculo está bien hecho, pero de este modo es más complicado, entre otras cosas porque el cálculo de va haciendo secuencialmente elemento a elemento entre las listas, y en este caso no es mucho problema ya que son listas de solo 3 elementos, pero podría ser un problema al trabajar con listas de miles de elementos. Se realizar el mismo cálculo de una manera mucho más eficiente usando los Arrays de NumPy, veamos el ejemplo:
+
+```python
+np_altura = np.array([1.7, 1.65, 1.82])
+np_peso = np.array([67, 55, 72])
+
+imc = np_peso / np_altura**2
+imc
+array([23.183391  , 20.2020202 , 21.73650525])
+```
+
+Además este tipo de objetos Array de NumPy son iterables del mismo modo que lo son algunas colecciones estándar de Python como las listas, tienen algunas propiedades como los slices que nos permiten navegar dentro del Array y acceder a determinados elementos ubicados en ciertas posiciones.
+
+Otro uso interesante de los Arrays es que podemos evaluar todos los elementos del Array con una simple operación como por ejemplo saber qué valores son mayores que `21`:
+
+```python
+imc > 21
+array([ True, False,  True])
+```
+
+En este caso el primer resultado es `True` puesto que se cumple que `23.183391` es mayor que `21`, el segundo es `False` porque `20.2020202` no es mayor que `21` y el tercero es `True` puesto que `21.73650525` sí es mayor que `21`.
