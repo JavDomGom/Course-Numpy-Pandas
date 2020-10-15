@@ -768,7 +768,7 @@ array([23.183391  , 20.2020202 , 21.73650525])
 
 Además este tipo de objetos Array de NumPy son iterables del mismo modo que lo son algunas colecciones estándar de Python como las listas, tienen algunas propiedades como los slices que nos permiten navegar dentro del Array y acceder a determinados elementos ubicados en ciertas posiciones.
 
-Otro uso interesante de los Arrays es que podemos evaluar todos los elementos del Array con una simple operación como por ejemplo saber qué valores son mayores que `21`:
+Otro uso interesante de los Arrays es que podemos evaluar todos los elementos del Array con una simple operación, como por ejemplo saber qué valores son mayores que `21`:
 
 ```python
 imc > 21
@@ -776,3 +776,40 @@ array([ True, False,  True])
 ```
 
 En este caso el primer resultado es `True` puesto que se cumple que `23.183391` es mayor que `21`, el segundo es `False` porque `20.2020202` no es mayor que `21` y el tercero es `True` puesto que `21.73650525` sí es mayor que `21`.
+
+Si quisiéramos obtener solo los elementos del array que cumplen la condición anterior podremos hacerlo de la siguiente manera:
+
+```python
+imc[imc > 21]
+array([23.183391  , 21.73650525])
+```
+
+## Ejemplo cálculo áreas de triángulos
+
+En este ejemplo vamos a calcular masivamente con Arrays de NumPy el área de varios triángulos y quedarnos solo con aquellas áreas que sean `> 6.5`. Para calcular el área de un triángulo hay que multiplicar la base por la altura y dividirlo entre dos.
+
+```python
+base * altura / 2
+```
+
+Para ello tenemos los siguiente dos Arrays:
+
+```python
+bases_tri = np.array([2, 2.37, 3.05, 1.75, 4, 2.81])
+alturas_tri = np.array([1.21, 2.6, 4.4, 7.03, 4.01, 5.25])
+```
+
+Ahora multiplicamos las bases por las alturas y lo dividimos entre `2` de la siguiente manera:
+
+```python
+areas_tri = bases_tri * alturas_tri / 2
+areas_tri
+array([1.21   , 3.081  , 6.71   , 6.15125, 8.02   , 7.37625])
+```
+
+Como solo nos interesan las áreas que son `> 6.5` podremos obtener los valores que cumplan la condición de la siguiente manera:
+
+```python
+areas_tri[areas_tri > 6.5]
+array([6.71   , 8.02   , 7.37625])
+```
