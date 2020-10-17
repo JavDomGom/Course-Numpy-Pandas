@@ -723,7 +723,33 @@ Se suele utilizar más la varianza puesto que está menos influenciada por los v
 
 # NumPy
 
-NumPy es una librería de Python enfocada en el cálculo numérico que nos permite realizar operaciones de una manera sencilla y rápida. Su objeto base es un vector de números denominado Array. Es una alternativa a las listas que hemos visto hasta ahora y nos va a permitir realizar una serie de funciones muy potentes. A diferencia de las listas, donde se opera de forma independiente en cada uno de los elementos, en los Arrays las operaciones se van a realizar sobre todo el Array simultáneamente. Otra gran diferencia respecto a las listas tradicionales es que en un Array solo se admite un tipo de dato, normalmente numérico. Además NumPy nos va a servir como base de cálculo para otras librerías como Pandas o SciKit Learn.
+NumPy es una librería de Python enfocada en el cálculo numérico que nos permite realizar operaciones de una manera sencilla y rápida. Su objeto base es un vector de números denominado Array. Es una alternativa a las listas que hemos visto hasta ahora y nos va a permitir realizar una serie de funciones muy potentes. A diferencia de las listas, donde se opera de forma independiente en cada uno de los elementos, en los Arrays las operaciones se van a realizar sobre todo el Array simultáneamente. A continuación se muestra una diferencia entre listas y Arrays de NumPy a la hora de realizar una suma de elementos, por ejemplo, tenemos estas dos listas:
+
+```python
+a = [1, 2, 3]
+b = [4, 5, 6]
+```
+
+Si sumamos las dos listas obtenemos lo siguiente:
+
+```python
+a + b
+[1, 2, 3, 4, 5, 6]
+```
+
+Como se puede ver, no suma los elementos, solo concatena la lista `b` a continuación de la lista `a`. Veamos cómo se comparta una suma de Arrays con el mismo ejemplo:
+
+```python
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+a + b
+array([5, 7, 9])
+```
+
+En este caso se han sumado cada uno de los elementos del Array `a` con los elementos del array `b`.
+
+Otra gran diferencia respecto a las listas tradicionales es que en un Array solo se admite un tipo de dato, normalmente numérico. Además NumPy nos va a servir como base de cálculo para otras librerías como Pandas o SciKit Learn.
 
 ## Importación de NumPy
 
@@ -812,4 +838,11 @@ Como solo nos interesan las áreas que son `> 6.5` podremos obtener los valores 
 ```python
 areas_tri[areas_tri > 6.5]
 array([6.71   , 8.02   , 7.37625])
+```
+
+También podemos hacer una conjunción de condiciones, por ejemplo para obtener solo las áreas que son `> 6.5` y también `< 8`, para ello usaremos el AND lógico mediante el símbolo `&` de la siguiente manera:
+
+```python
+areas_tri[(areas_tri > 6.5) & (areas_tri < 8)]
+array([6.71   , 7.37625])
 ```
