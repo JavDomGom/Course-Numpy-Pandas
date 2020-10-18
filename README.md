@@ -6,13 +6,13 @@ Pandas es una librería de Python creada específicamente para el análisis de d
 
 Por convención la imporatción de la librería Pandas en nuestro código se realiza de la siguiente manera:
 
-```python
+```Python
 import pandas as pd
 ```
 
 A partir de este momento podremos utilizar el alias `pd` para invocar cualquier método de la librería Pandas. Por ejemplo, para importar un fichero CSV lo haríamos de la siguiente manera:
 
-```python
+```Python
 df = pd.read_csv(
     r'file.csv',
     index_col=0,
@@ -30,7 +30,7 @@ En este ejemplo se han utilizado algunos parámteros del método `read-csv`, don
 
 Para ver un ejemplo real usaremos el dataset llamado `Info_pais.csv` de la carpeta `datasets` con los siguiente atributos:
 
-```python
+```Python
 df = pd.read_csv(
     r'../datasets/Info_pais.csv',
     encoding='ISO-8859-1',
@@ -40,7 +40,7 @@ df = pd.read_csv(
 
 Una vez definido el dataframe y almacenado en la variable `df`, si no estamos haciendo uso del atributo `nrows`, podremos mostrar una cabecera con los 5 primeros elementos utlizando el método `head()` de la siguiente manera:
 
-```python
+```Python
 df.head()
 ```
 
@@ -49,7 +49,7 @@ df.head()
 
 A este método `head()` se le puede indicar dentro de los paréntesis el número de registros que se quieren mostrar, por ejemplo para mostrar solo los 20 primeros registros se haría se la siguiente manera:
 
-```python
+```Python
 df.head(20)
 ```
 
@@ -60,7 +60,7 @@ df.head(20)
 
 Ahora que ya tenemos importada la librería `pandas` e instanciado un dataframe `df` podremos tratar o manipular la información de diferentes maneras. En este caso vamos a ordenar los datos en base a una columna, por ejemplo la columna `Esperanza de vida`, y lo haremos en orden ascendente de la siguiente manera:
 
-```python
+```Python
 df_order = df.sort_values(
     'Esperanza de vida',
     ascending=True
@@ -78,20 +78,20 @@ Si ahora mostramos la cabecera con los 5 primeros registros veremos que están o
 
 Matplotlib es una librería de visualización que tiene una gran veriedad de gráficos y que es fácilmente configurable. Más información acerca de los gráficos disponibles en https://matplotlib.org/gallery/index.html. Matplotlib viene con la instalación de Anaconda. Para utilizar esta librería debemos importarla de la siguiente manera:
 
-```python
+```Python
 import matplotlib.pyplot as plt
 ```
 
 A partir de este momento podremos utilizar en nuestro código el alias `plt` para acceder a todos los métodos de esta librería. Veamos un ejemplo en el que cargaremos un array de datos para el eje `x`, llamado por ejemplo `year`, y otro array de datos para el eje `y`, llamado por ejemplo `value`:
 
-```python
+```Python
 year = [2020, 2021, 2022]
 value = [5, 6, 9]
 ```
 
 Finalmente podremos generar un gráfico de líneas mediante el método `plot()` de la librería `matplotlib`, al que le tendremos que pasar como argumentos primero el array de datos que queremos utilizar en el eje `x` y segundo el array que usaremos para el eje `y`:
 
-```python
+```Python
 plt.plot(year, value)
 ```
 
@@ -100,7 +100,7 @@ plt.plot(year, value)
 
 Si quisieramos generar otro tipo de gráfico con los mismos datos podríamos utilizar por ejemplo el método `scatter()` al que también hay que pasarle como argumentos los datos de los ejes `x` e `y`:
 
-```python
+```Python
 plt.scatter(year, value)
 ```
 
@@ -109,7 +109,7 @@ plt.scatter(year, value)
 
 Esta sería una manera de crear gráficos muy sencillos a partir de un par de listas con datos, pero normalmente se suelen utilizar fuentes de datos más grandes y complejas como son los dataframes que hemos visto anteriormente. Para visualizar con la librería `matplotlib` la infomación de un dataframe podemos hacerlo de la siguiente manera. Primero importamos el dataframe, en este caso uno llamado `hum_temp.csv` con algunos datos random relativos a humedad y temperatura:
 
-```python
+```Python
 import pandas as pd
 df = pd.read_csv(
     r'../datasets/hum_temp.csv',
@@ -120,7 +120,7 @@ df = pd.read_csv(
 
 Comprobamos que se ha cargado correctamente:
 
-```python
+```Python
 df
 ```
 
@@ -129,7 +129,7 @@ df
 
 A continuación usamos el método `plot()` de la instancia `plt` al que le pasariamos el nombre del dataframe, en este caso `df` y entre corchetes el nombre de la columna que queremos utilizar para representarlo en el eje `y`, si no se especifica el eje `x` en este se utilizarán los valores del índice de los registros de datos:
 
-```python
+```Python
 plt.plot(df['temperature'])
 ```
 
@@ -140,7 +140,7 @@ Como se puede ver, los datos de la columna `temperature` aparecen en el eje `y` 
 
 Veamos una manera mejor de representar los datos de este dataframe, en este caso usaremos el método `plot()` con el dataframe `df` de la siguiente manera:
 
-```python
+```Python
 df['humidity'].plot()
 ```
 
@@ -149,7 +149,7 @@ df['humidity'].plot()
 
 Si eliminamos el nombre de la columna entre corchetes y especificamos únicamente el nombre del dataframe `df` podremos ver en el mísmo gráfico todos los registros de cada columna en líneas diferentes, cada una con un color distinto.
 
-```python
+```Python
 df.plot()
 ```
 
@@ -161,7 +161,7 @@ df.plot()
 Veamos otro ejemplo en el que vamos a trabajar con otro dataset. En este caso vamos a ver la evolución de la cotización de un índice bursatil como el Standard & Poor's 500.
 
 Primero creamos un dataframe llamado `df_sp500` en el que importaremos el archivo CSV `SP500_data.csv` de la siguiente manera:
-```python
+```Python
 df_sp500 = pd.read_csv(
     r'../datasets/SP500_data.csv',
     encoding='ISO-8859-1',
@@ -171,7 +171,7 @@ df_sp500 = pd.read_csv(
 
 Si imprimimos la cabecera podremos visualizar los 5 primeros registros:
 
-```python
+```Python
 df_sp500.head()
 ```
 
@@ -180,13 +180,13 @@ df_sp500.head()
 
 Para visualizar este dataframe primero importaremos la librería `matplotlib` de la siguiente manera:
 
-```python
+```Python
 import matplotlib.pyplot as plt
 ```
 
 Ahora vamos a representar la columna del cierre bursatil de cada día, columna `Close`:
 
-```python
+```Python
 df_sp500['Close'].plot()
 ```
 
@@ -195,13 +195,13 @@ df_sp500['Close'].plot()
 
 En este gráfico podremos ver la evolución del índice bursatil, pero si nos fijamos en el eje `x` ha representado el índice de cada registro. Para poder representar en el eje `x` la fecha del dato debemos especificar que el índice del datframe `df_sp500` ha de ser la columna `Date`, de la siguiente forma:
 
-```python
+```Python
 df_sp500.index = df_sp500['Date']
 ```
 
 Si volvemos a mostrar la cabecera veremos que ahora se han insertado en el índice los valores del campo Date:
 
-```python
+```Python
 df_sp500.head()
 ```
 
@@ -210,7 +210,7 @@ df_sp500.head()
 
 volvemos a representar el gráfico de nuevo con la intrucción de antes:
 
-```python
+```Python
 df_sp500['Close'].plot()
 ```
 
@@ -224,7 +224,7 @@ Ahora vemos que en el eje `x` se representan los valores del campo o columna `Da
 En este otro ejemplo vamos a trabajar con un dataset que he obtenido de [este site](https://datos.gob.es/en/catalogo/e05070101-evolucion-de-enfermedad-por-el-coronavirus-covid-19). Se tratan de los casos detectados de COVID-19 por comunidades autónomas en España.
 
 Primero creamos un dataframe llamado `df_covid19_ccaas` en el que importaremos el archivo CSV `datos_ccaas.csv` de la siguiente manera:
-```python
+```Python
 df_covid19_ccaas = pd.read_csv(
     r'../datasets/datos_ccaas.csv',
     encoding='ISO-8859-1',
@@ -234,7 +234,7 @@ df_covid19_ccaas = pd.read_csv(
 
 Si imprimimos la cabecera podremos visualizar los 5 primeros registros:
 
-```python
+```Python
 df_covid19_ccaas.head()
 ```
 
@@ -243,13 +243,13 @@ df_covid19_ccaas.head()
 
 Como siempre, importamos la librería `matplotlib` si no lo tuviéramos importada de ejecuciones anteriores.
 
-```python
+```Python
 import matplotlib.pyplot as plt
 ```
 
 Estableceremos tal y como hemos visto en el ejemplo anterior el campo `fecha` como índice y los datos de la columna `num_casos` en el eje `y` de la siguiente manera:
 
-```python
+```Python
 df_covid19_ccaas.index = df_covid19_ccaas['fecha']
 df_covid19_ccaas['num_casos'].plot()
 ```
@@ -261,7 +261,7 @@ df_covid19_ccaas['num_casos'].plot()
 
 En este ejemplo vamos a utilizar el caso de uso que vimos anteriormente en el que teníamos la esperanza de vida frente a la renta per capita por países. Vamos a ver si existe una correlación entre estas dos variables.
 
-```python
+```Python
 df = pd.read_csv(
     r'../datasets/Info_pais.csv',
     encoding='ISO-8859-1',
@@ -271,7 +271,7 @@ df = pd.read_csv(
 
 Ahora pondremos los datos en orden ascendente según los valores de la columna `Esperanza de vida` de la siguiente manera:
 
-```python
+```Python
 df_order = df.sort_values(
     'Esperanza de vida',
     ascending=True
@@ -285,7 +285,7 @@ df_order.head()
 
 Es el momento de crear el gráfico mediante el método `scatter()`. Representaremos en el eje `x` los datos de la columna `Renta per capita` y en el eje `y` los datos de la columna `Esperanza de vida`.
 
-```python
+```Python
 plt.scatter(df_order['Renta per capita'], df_order['Esperanza de vida'])
 ```
 
@@ -294,7 +294,7 @@ plt.scatter(df_order['Renta per capita'], df_order['Esperanza de vida'])
 
 De momento se aprecia un gráfico que nos da una idea aproximada de cómo se ven los datos. Podemos añadir un título y etiquetas a los ejes `x` e `y` del gráfico de la siguiente manera:
 
-```python
+```Python
 plt.scatter(
     df_order['Renta per capita'],
     df_order['Esperanza de vida']
@@ -306,7 +306,7 @@ plt.ylabel('Esperanza de vida')
 
 En el gráfico que acabamos de generar los puntos  aparecen uniformes. Vamos a configurar el gráfico para que sean proporcionales tanto en tamaño como en color para cada país. Para ello debemos crear una nueva columna llamda por ejemplo `df_order['Poblacion_normalizada']` que normalice frente al máximo de población, por lo que le asignaremos como valores el valor de la columna `Población` dividido entre el valor máximo de esta columna `Población`, de este modo lo estaríamos escalando o normalizando.
 
-```python
+```Python
 df_order['Poblacion_normalizada'] = df_order['Poblacion']/max(df_order['Poblacion'])
 ```
 
@@ -314,7 +314,7 @@ De este modo, el país que tenga la población más alta quedaría escalado a `1
 
 Existen grandes diferencias en número de habitantes entre unos países y otros, por ejemplo China con 1200 millones y otros que podrían tener 50000. Para evitar que un país con esta gran cantidad de habitantes inunde el gráfico es recomendable que en vez de dividir la población de cada país entre el máximo de población, hacer la división del máximo entre `10000`, para no tener un factor tan elevado.
 
-```python
+```Python
 df_order['Poblacion_normalizada'] = df_order['Poblacion']/(max(df_order['Poblacion'])/10000)
 
 df_order.head()
@@ -328,7 +328,7 @@ Ahora podremos usar esta nueva columna con los datos escalados para crear una vi
 
 Es el momento de generar un nueva visualización utilizando la nueva columna de datos normalizados que hemos generado, por ejemplo con el siguiente código:
 
-```python
+```Python
 plt.scatter(
     df_order['Renta per capita'],
     df_order['Esperanza de vida'],
@@ -346,7 +346,7 @@ Para modificar el tamaño hemos utilizado el parámetro `s` (size) y como valor 
 
 El problema que vemos es que la visualización es muy pequeña, pero podemos mejorar esto añadiendo a nuestro código lo siguiente para aumentar las pulgadas de nuestro gráfico:
 
-```python
+```Python
 plt.scatter(
     df_order['Renta per capita'],
     df_order['Esperanza de vida'],
@@ -369,7 +369,7 @@ Si nos fijamos bien, ahora se representa cada burbuja de cada país de un tamañ
 
 Ahora vamos a modificar el color. Para ello debemos añadir el atributo `c` (color), a conutnuación del atributo `s` (size), y como valor vamos a usar de nuevo la columna `Poblacion_normalizada`. Quedaría del siguiente modo:
 
-```python
+```Python
 plt.scatter(
     df_order['Renta per capita'],
     df_order['Esperanza de vida'],
@@ -391,7 +391,7 @@ En esta nueva visualización vemos que ya no solo se representa cada país en un
 
 También podremos añadir la etiqueta del nombre del país dentro de cada burbuja utilizando el método `annotate()`, por ejemplo añadiéndoselo solo a los `10` primeros países con el siguiente código:
 
-```python
+```Python
 plt.scatter(
     df_order['Renta per capita'],
     df_order['Esperanza de vida'],
@@ -420,7 +420,7 @@ for i in range(1, 10):
 
 Otro especto que podríamos mejorar es la representación de los datos del eje `y`, son los datos de `120` países y actualmente se ven muy juntos, se ve mal. esto se soluciona fácilmente con la fución `yticks()` a la que le pasaremos tres argumentos, que son un `1` representando el primer dato, `120` representamdo el último dato, y `10` para indicar que los queremos mostrar de diez en diez.
 
-```python
+```Python
 plt.scatter(
     df_order['Renta per capita'],
     df_order['Esperanza de vida'],
@@ -459,11 +459,11 @@ De este modo hemos creado una visualizción de los datos muy potente y de una ma
 Se dice que una variable es *discreta* cuando no puede tomar ningún valor entre dos consecutivos, y que es *continua* cuando puede tomar cualquier valor dentro de un intervalo. Por ejemplo:
 
 * Variable discreta:
-```python
+```Python
 numero_alumnos_por_clase = [28, 31, 30, 27, 25, 36]
 ```
 * Variable continua:
-```python
+```Python
 temperatura_madrid = [28.3, 29.0, 22.47, 30.02, 17.6]
 ```
 
@@ -476,13 +476,13 @@ La *media* y la *mediana* son dos conceptos estadísticos básicos que debemos c
 
 Veamos un ejemplo, supongamos que tenemos la variable `v1` con la siguiente lista de valores:
 
-```python
+```Python
 v1 = [4, 6, 3, 5, 8, 9, 2, 12, 16, 4, 7, 42, 13, 6, 7]
 ```
 
 Para calcular la media primero debemos sumar todos los valores de la variable `v1` y dividirlo entre la cantidad de valores:
 
-```python
+```Python
 sum(v1)/len(v1)
 9.6
 ```
@@ -491,13 +491,13 @@ En este caso la media de los valores de la variable `v1` es `9.6`.
 
 La mediana es el valor central de los valores de una variable, una vez estos están ordenados de manera ascendente. Veamos un ejemplo, utilizando los valores de la variable `v1` de antes, solo que con los elementos de la lista ordenados de forma ascendente y alamcenados en una nueva variable llamada `v2`:
 
-```python
+```Python
 v2 = [2, 3, 4, 4, 5, 6, 6, 7, 7, 8, 9, 12, 13, 16, 42]
 ```
 
 Para calcular la mediana podríamos hacer una función llamada `mediana` que reciba como argumento una lista de números, en nuestro caso le pasaremos la variable `v2`, por ejemplo:
 
-```python
+```Python
 def mediana(lista):
     lst_sorted = sorted(lista)
     lst_len = len(lista)
@@ -523,7 +523,7 @@ Existe una diferencia entre la media y la mediana porque hay un valor que dista 
 
 Otro ejemplo con valores en los que encontramos un outlaier aún más elevado:
 
-```python
+```Python
 v1 = [4, 6, 3, 5, 8, 9, 2, 12, 16, 4, 7, 282, 13, 6, 7]
 v2 = [31, 23, 25, 20, 21, 29, 24, 26, 30, 27, 25, 24, 23, 32, 24]
 
@@ -589,7 +589,7 @@ Veamos un caso de uso. Tenemos un avariable `x` que tiene como valor el peso de 
 * Tomate x_7 = 69gr
 * Tomate x_8 = 54gr
 
-```python
+```Python
 x = [60, 56, 61, 68, 51, 53, 69, 54]
 ```
 
@@ -598,7 +598,7 @@ El primer paso que hay que dar es calcular la media de la variable `x`, tal y co
 <p align="center"><img src="img/latex_media_caso_de_uso_00.png" width="175"></p>
 <br>
 
-```python
+```Python
 sum(x)/len(x)
 59.0
 ```
@@ -610,7 +610,7 @@ En el segundo paso tendremos restar a cada valor de la variable `x` la media y l
 <p align="center"><img src="img/latex_media_caso_de_uso_01.png" width="260"></p>
 <br>
 
-```python
+```Python
 for n in map(lambda i : pow(i-59, 2), x):
     print(n)
 1
@@ -623,7 +623,7 @@ for n in map(lambda i : pow(i-59, 2), x):
 25
 ```
 
-```python
+```Python
 sum(map(lambda i : pow(i-59, 2), x))
 320
 ```
@@ -633,7 +633,7 @@ El último paso para calcular la varianza de `x` es dividir `320` entre el núme
 <p align="center"><img src="img/latex_media_caso_de_uso_02.png" width="220"></p>
 <br>
 
-```python
+```Python
 320/8
 40.0
 ```
@@ -643,7 +643,7 @@ Mas allá de la varianza podemos calcular también la desviación estándar de l
 <p align="center"><img src="img/latex_media_caso_de_uso_03.png" width="210"></p>
 <br>
 
-```python
+```Python
 import math
 math.sqrt(40)
 6.324555320336759
@@ -662,12 +662,12 @@ Veamos qué pasaría si tuviéramos otro caso en el que recogiéramos otros 8 to
 * Tomate y_7 = 59gr
 * Tomate y_8 = 64gr
 
-```python
+```Python
 y = [50, 66, 51, 78, 41, 63, 59, 64]
 ```
 Vemos que hay una mayor dispersión en los datos de partida, sin embargo la media es `59`, la misma que en el caso de la variable `x`.
 
-```python
+```Python
 sum(y)/len(y)
 59.0
 ```
@@ -677,7 +677,7 @@ Si ahora calculamos del mismo modo que antes el numerador del término de la var
 <p align="center"><img src="img/latex_media_caso_de_uso_04.png" width="260"></p>
 <br>
 
-```python
+```Python
 for n in map(lambda i : pow(i-59, 2), y):
     print(n)
 81
@@ -690,7 +690,7 @@ for n in map(lambda i : pow(i-59, 2), y):
 25
 ```
 
-```python
+```Python
 sum(map(lambda i : pow(i-59, 2), y))
 920
 ```
@@ -700,7 +700,7 @@ Esto se debe a que la secuencia original de datos dista mucho más del valor pro
 <p align="center"><img src="img/latex_media_caso_de_uso_05.png" width="225"></p>
 <br>
 
-```python
+```Python
 920/8
 115.0
 ```
@@ -710,7 +710,7 @@ Y la desviación estándar serían `10.72` gramos
 <p align="center"><img src="img/latex_media_caso_de_uso_06.png" width="225"></p>
 <br>
 
-```python
+```Python
 import math
 
 math.sqrt(115)
@@ -725,21 +725,21 @@ Se suele utilizar más la varianza puesto que está menos influenciada por los v
 
 NumPy es una librería de Python enfocada en el cálculo numérico que nos permite realizar operaciones de una manera sencilla y rápida. Su objeto base es un vector de números denominado Array. Es una alternativa a las listas que hemos visto hasta ahora y nos va a permitir realizar una serie de funciones muy potentes. A diferencia de las listas, donde se opera de forma independiente en cada uno de los elementos, en los Arrays las operaciones se van a realizar sobre todo el Array simultáneamente. A continuación se muestra una diferencia entre listas y Arrays de NumPy a la hora de realizar una suma de elementos, por ejemplo, tenemos estas dos listas:
 
-```python
+```Python
 a = [1, 2, 3]
 b = [4, 5, 6]
 ```
 
 Si sumamos las dos listas obtenemos lo siguiente:
 
-```python
+```Python
 a + b
 [1, 2, 3, 4, 5, 6]
 ```
 
 Como se puede ver, no suma los elementos, solo concatena la lista `b` a continuación de la lista `a`. Veamos cómo se comparta una suma de Arrays con el mismo ejemplo:
 
-```python
+```Python
 a = np.array([1, 2, 3])
 b = np.array([4, 5, 6])
 
@@ -755,7 +755,7 @@ Otra gran diferencia respecto a las listas tradicionales es que en un Array solo
 
 Por convención la imporatción de la librería NumPy en nuestro código se realiza de la siguiente manera:
 
-```python
+```Python
 import numpy as np
 ```
 
@@ -763,27 +763,27 @@ import numpy as np
 
 En este ejemplo vamos a calcular el índice de masa corporal sobre los valores `peso` y `altura` de tres personas.
 
-```python
+```Python
 altura = [1.7, 1.65, 1.82]
 peso = [67, 55, 72]
 ```
 
 El cálculo que hay que hacer para obtener el IMC es dividir el peso entre el cuadrado de la altura:
 
-```python
+```Python
 peso / altura**2
 ```
 
 Si quisiéramos calcular el IMC mediante listas tradicionales podríamos hacerlo fácilmente usando la función `zip()`, iterar a través de un bucle `for` e ir añadiéndo los resultados mediante compresión de listas del siguiente modo:
 
-```python
+```Python
 [p / a**2 for p, a in zip(peso, altura)]
 [23.18339100346021, 20.202020202020204, 21.736505252988767]
 ```
 
 El cálculo está bien hecho, pero de este modo es más complicado, entre otras cosas porque el cálculo de va haciendo secuencialmente elemento a elemento entre las listas, y en este caso no es mucho problema ya que son listas de solo 3 elementos, pero podría ser un problema al trabajar con listas de miles de elementos. Se realizar el mismo cálculo de una manera mucho más eficiente usando los Arrays de NumPy, veamos el ejemplo:
 
-```python
+```Python
 np_altura = np.array([1.7, 1.65, 1.82])
 np_peso = np.array([67, 55, 72])
 
@@ -796,7 +796,7 @@ Además este tipo de objetos Array de NumPy son iterables del mismo modo que lo 
 
 Otro uso interesante de los Arrays es que podemos evaluar todos los elementos del Array con una simple operación, como por ejemplo saber qué valores son mayores que `21`:
 
-```python
+```Python
 imc > 21
 array([ True, False,  True])
 ```
@@ -805,7 +805,7 @@ En este caso el primer resultado es `True` puesto que se cumple que `23.183391` 
 
 Si quisiéramos obtener solo los elementos del array que cumplen la condición anterior podremos hacerlo de la siguiente manera:
 
-```python
+```Python
 imc[imc > 21]
 array([23.183391  , 21.73650525])
 ```
@@ -814,20 +814,20 @@ array([23.183391  , 21.73650525])
 
 En este ejemplo vamos a calcular masivamente con Arrays de NumPy el área de varios triángulos y quedarnos solo con aquellas áreas que sean `> 6.5`. Para calcular el área de un triángulo hay que multiplicar la base por la altura y dividirlo entre dos.
 
-```python
+```Python
 base * altura / 2
 ```
 
 Para ello tenemos los siguiente dos Arrays:
 
-```python
+```Python
 bases_tri = np.array([2, 2.37, 3.05, 1.75, 4, 2.81])
 alturas_tri = np.array([1.21, 2.6, 4.4, 7.03, 4.01, 5.25])
 ```
 
 Ahora multiplicamos las bases por las alturas y lo dividimos entre `2` de la siguiente manera:
 
-```python
+```Python
 areas_tri = bases_tri * alturas_tri / 2
 areas_tri
 array([1.21   , 3.081  , 6.71   , 6.15125, 8.02   , 7.37625])
@@ -835,14 +835,58 @@ array([1.21   , 3.081  , 6.71   , 6.15125, 8.02   , 7.37625])
 
 Como solo nos interesan las áreas que son `> 6.5` podremos obtener los valores que cumplan la condición de la siguiente manera:
 
-```python
+```Python
 areas_tri[areas_tri > 6.5]
 array([6.71   , 8.02   , 7.37625])
 ```
 
 También podemos hacer una conjunción de condiciones, por ejemplo para obtener solo las áreas que son `> 6.5` y también `< 8`, para ello usaremos el AND lógico mediante el símbolo `&` de la siguiente manera:
 
-```python
+```Python
 areas_tri[(areas_tri > 6.5) & (areas_tri < 8)]
 array([6.71   , 7.37625])
 ```
+
+## Arrays de dos dimensiones en NumPy
+
+Con NumPy también podremos crear un Array de dos dimensiones. En realidad es una matriz de `m` filas por `n` columnas.
+
+<p align="center"><img src="img/latex_array_2d_00.png" width="350"></p>
+<br>
+
+La sintaxis para crearla es la siguiente:
+
+```Python
+nombre_array = np.array([[valores_fila_1],
+                         [valores_fila_2],
+                         [valores_fila_m]])
+```
+
+Veamos cómo crear un array bidimensional como este:
+
+<p align="center"><img src="img/latex_array_2d_01.png" width="135"></p>
+<br>
+
+```Python
+a = np.array([[2, 7, 8], [4, 8, 10]])
+a
+array([[ 2,  7,  8],
+       [ 4,  8, 10]])
+```
+
+Si quisiéramos obtener el valor `10` de nuestro array de dos dimensiones tendríamos que especificar el índice de la fila seguido del índice de la columna, teniendo en cuenta que los índices siempre empiezan por el número `0`. En este ejemplo el valor `10` se encuentra en la fila con índice `1` y la columna con índice `2`.
+
+```Python
+a[1, 2]
+10
+```
+
+Ahora supongamos que queremos obtener todas las filas pero solo los valores de las columnas  primera y segunda. En este caso tendríamos que especificar en primer lugar que queremos todas las filas mediante los dos puntos `:`, y a continuación un slice `0:2` para indicar solo las columnas desde el índice `0` hasta el `1`, ya que en un slice el número que se indica al final no se muetra, es donde se para.
+
+```Python
+a[:, 0:2]
+array([[2, 7],
+       [4, 8]])
+```
+
+## Cálculo estadístico con NumPy
