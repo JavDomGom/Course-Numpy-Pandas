@@ -966,4 +966,29 @@ Por ejemplo, si quisiéramos
 array_gauss = np.random.normal(2, 0.5, 1000)
 ```
 
-Como resultado tendremos un Array de `1000` elementos con la distribución estadística que hemos insertado. Si visualizamos los datos se ven de la siguiente manera:
+Como resultado tendremos un Array de `1000` elementos con la distribución estadística que hemos insertado. Podemos comprobar la media y la desviación estándar apra ver que los datos se aproximan mucho:
+
+```Python
+media = np.mean(array_gauss)
+media
+2.00020348250122
+
+desviacion = np.std(array_gauss)
+desviacion
+0.496490256867947
+```
+
+Si visualizamos los datos se ven de la siguiente manera:
+
+```Python
+import matplotlib.pyplot as plt
+import scipy.stats as stats
+
+plt.scatter(
+    array_gauss,
+    stats.norm.pdf(array_gauss, media, desviacion)
+)
+```
+
+<p align="center"><img src="img/latex_gauss_00.png" width="355"></p>
+<br>
