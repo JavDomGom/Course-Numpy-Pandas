@@ -890,3 +890,80 @@ array([[2, 7],
 ```
 
 ## Cálculo estadístico con NumPy
+
+Para realizar cálculo estadístico NumPy nos ofrece una gran veriedad de funciones muy útiles y potentes. En esta sección veremos algunas de ellas que nos pueden servir para solucionar algunos cálculos que hemos visto en puntos anteriores de una manera mucho más sencilla y rápida.
+
+Por ejemplo, supongamos que tenemos el siguiente Array con varios registros de temperaturas de una ciudad:
+
+```Python
+temperaturas = np.array([12, 13.5, 13, 14, 13.2, 14.8, 15, 15.16, 16, 16.2, 15.7, 17, 17.2, 16.8, 14, 14.2, 14.7, 16, 17.5])
+```
+
+Podríamos calcular la media o promedio usando la función `mean(array)` de la siguiente manera:
+
+```Python
+np.mean(temperaturas)
+15.050526315789472
+```
+
+La mediana usando la función `median(array)`:
+
+```Python
+np.median(temperaturas)
+15.0
+```
+
+Podremos obtener los valores mínimos y máximos con las funciones `min(array)` y `max(array)`.
+
+```Python
+np.min(temperaturas)
+12.0
+```
+
+```Python
+np.max(temperaturas)
+17.5
+```
+
+Para calcular la varianza podremos usar la función `var(array)` de la siguiente manera:
+
+```Python
+np.var(temperaturas)
+2.2893207756232683
+```
+
+La desviación estándar podremos obtenerla usando la función `std(array)` de la siguiente manera:
+
+```Python
+np.std(temperaturas)
+1.5130501563475245
+```
+
+También tenemos la función `percentile(array, k)` a la que tendremos que pasarle como argumentos el array y también el percentil que queremos obtener, por ejemplo el `90%`:
+
+```Python
+np.percentile(temperaturas, 90)
+17.04
+```
+
+Esto lo que quiere decir es que en el array de temperaturas no se supera la temperatura `17.04` en el `90%` de los casos, o dicho de otro modo, solo el `10%` de los datos supera la temperatura de `17.04`.
+
+## Generación de datos random con NumPy
+
+Una cualidad de NumPy muy interesante es que nos permite generar datos random tomando como partida diferentes parámetros estadísticos, como por ejemplo una media y una desviación estándar, y generar un Array de valores con dicha distribución estadística. La función es `random.normal()` necesita que le pasemos como argumentos una media, la desviación estándar y un número de muestras. Su sintaxis es la siguiente:
+
+```Python
+nombre_array = np.random.normal(
+    media,
+    desviacion_estandar,
+    numero_muestras
+)
+```
+
+Por ejemplo, si quisiéramos
+
+```Python
+array_gauss = np.random.normal(2, 0.5, 1000)
+```
+
+Como resultado tendremos un Array de `1000` elementos con la distribución estadística que hemos insertado. Si visualizamos los datos se ven de la siguiente manera:
